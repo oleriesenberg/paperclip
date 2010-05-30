@@ -27,6 +27,7 @@
 
 require 'erb'
 require 'tempfile'
+require 'active_record'
 require 'paperclip/upfile'
 require 'paperclip/iostream'
 require 'paperclip/geometry'
