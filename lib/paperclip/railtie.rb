@@ -4,8 +4,13 @@ module Paperclip
   if defined? Rails::Railtie
     require 'rails'
     class Railtie < Rails::Railtie
-      config.after_initialize do
-        Paperclip::Railtie.insert
+      initializer 'paperclip.insert_into_active_record' do
+        ActiveSupport.on_load :active_record do
+          Paperclip::Railtie.insert
+        end
+      end
+      rake_tasks do
+        load "tasks/paperclip.rake"
       end
     end
   end
@@ -17,4 +22,3 @@ module Paperclip
     end
   end
 end
-
